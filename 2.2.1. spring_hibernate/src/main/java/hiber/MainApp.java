@@ -23,11 +23,7 @@ public class MainApp {
 
       List<User> users = userService.listUsers();
       for (User user : users) {
-         System.out.println("Id = "+user.getId());
-         System.out.println("First Name = "+user.getFirstName());
-         System.out.println("Last Name = "+user.getLastName());
-         System.out.println("Email = "+user.getEmail());
-         System.out.println();
+         showUserInfo(user);
       }
 
       addUserWithCar(userService, "User5", "Lastname5", "user5@mail.ru",
@@ -39,21 +35,20 @@ public class MainApp {
 
       users = userService.listUsers();
       for (User user : users) {
-         System.out.println("Id = "+user.getId());
-         System.out.println("First Name = "+user.getFirstName());
-         System.out.println("Last Name = "+user.getLastName());
-         System.out.println("Email = "+user.getEmail());
-         System.out.println();
+         showUserInfo(user);
       }
 
-      User user = userService.getByCarModelAndSeries("car6", 666);
+      showUserInfo(userService.getByCarModelAndSeries("car6", 666));
+
+      context.close();
+   }
+
+   private static void showUserInfo(User user) {
       System.out.println("Id = "+user.getId());
       System.out.println("First Name = "+user.getFirstName());
       System.out.println("Last Name = "+user.getLastName());
       System.out.println("Email = "+user.getEmail());
       System.out.println();
-
-      context.close();
    }
 
    private static void addUserWithCar(UserService userService, String userFirstName, String userLastName, String email,
